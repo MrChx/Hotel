@@ -3,6 +3,7 @@ import CityCard from "../components/CityCard";
 import { useEffect, useState } from "react";
 import { City } from "../types/Data";
 import axios from "axios";
+import { Link } from "react-router-dom"; // Pastikan ini sesuai dengan kebutuhan Anda
 
 export default function BrowseCityWrapper() {
   const [cities, setCities] = useState<City[]>([]);
@@ -41,12 +42,12 @@ export default function BrowseCityWrapper() {
           You Can Choose <br />
           Our Favorite Cities
         </h2>
-        <a
-          href="#"
+        <Link
+          to="/explore-all"
           className="rounded-full py-3 px-5 bg-white font-bold"
         >
           Explore All City
-        </a>
+        </Link>
       </div>
       <div className="swiper w-full">
         <Swiper
@@ -61,7 +62,9 @@ export default function BrowseCityWrapper() {
               key={city.id}
               className="!w-fit first-of-type:pl-[calc((100%-1130px-60px)/2)] last-of-type:pr-[calc((100%-1130px-60px)/2)]"
             >
-              <CityCard city={city}></CityCard>
+              <Link to={`/city/${city.slug}`}>
+                <CityCard city={city}></CityCard>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
