@@ -2,6 +2,7 @@ import HotelCard from "../components/HotelCard";
 import { useEffect, useState } from "react";
 import { Hotel } from "../types/Data";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function BrowseHotelWrapper() {
   const [hotels, setHotel] = useState<Hotel[]>([]);
@@ -45,7 +46,9 @@ export default function BrowseHotelWrapper() {
       </h2>
       <div className="grid grid-cols-3 gap-[30px]">
       {hotels.map((hotel) => (
-        <HotelCard key={hotel.id} hotel={hotel} ></HotelCard>
+        <Link key={hotel.id} to={`/hotel/${hotel.slug}`}>
+        <HotelCard hotel={hotel} ></HotelCard>
+        </Link>
       ))}
         
       </div>

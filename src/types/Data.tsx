@@ -5,6 +5,7 @@ export interface Hotel {
     name: string,
     slug: string,
     city: City,
+    address: string,
     thumbnail: string,
     photos: Photo[],
     benefits: Benefit[],

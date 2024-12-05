@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { City } from "../types/Data";
 import axios from "axios";
 import HotelCard from "../components/HotelCard";
+import Navbar from "../components/Navbar";
 
 export default function CityDetails() {
   const { slug } = useParams<{ slug: string }>();
@@ -54,43 +55,7 @@ export default function CityDetails() {
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
       /> */}
-      <nav className="bg-white">
-        <div className="flex items-center justify-between w-full max-w-[1130px] py-[22px] mx-auto">
-          <a href="index.html">
-            <img src="/assets/images/logos/logo.svg" alt="logo" />
-          </a>
-          <ul className="flex items-center gap-[50px] w-fit">
-            <li>
-            <Link to={`/`}>
-              <a href="">Browse</a>
-            </Link>
-            </li>
-            <li>
-              <a href="">Popular</a>
-            </li>
-            <li>
-              <a href="">Categories</a>
-            </li>
-            <li>
-              <a href="">Events</a>
-            </li>
-            <li>
-              <a href="view-booking-details.html">My Booking</a>
-            </li>
-          </ul>
-          <a
-            href="#"
-            className="flex items-center gap-[10px] rounded-full border border-[#000929] py-3 px-5"
-          >
-            <img
-              src="/assets/images/icons/call.svg"
-              className="w-6 h-6"
-              alt="icon"
-            />
-            <span className="font-semibold">Contact Us</span>
-          </a>
-        </div>
-      </nav>
+      <Navbar></Navbar>
       <header className="flex flex-col w-full">
         <section id="Hero-Banner" className="relative flex h-[434px]">
           <div
@@ -127,7 +92,9 @@ export default function CityDetails() {
         </h2>
         <div className="grid grid-cols-3 gap-[30px]">
           {city.hotelSpaces.map((hotel) => (
+            <Link key={hotel.id} to={`/hotel/${hotel.slug}`}>
             <HotelCard key={hotel.id} hotel={hotel}></HotelCard>
+            </Link>
           ))}
         </div>
       </section>
