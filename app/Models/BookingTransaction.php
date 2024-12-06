@@ -24,15 +24,9 @@ class BookingTransaction extends Model
         'hotel_space_id',
     ];
 
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = $value;
-        $this->attributes['slug'] = str::slug($value);
-    }
-
     public static function generateUniqueTrxId()
     {
-        $prefix = '';
+        $prefix = 'CH';
         do {
             $randomString = $prefix . mt_rand(1000, 9999);
         } while (self::where('booking_trx_id', $randomString)->exists());
@@ -42,6 +36,6 @@ class BookingTransaction extends Model
 
     public function hotelSpace(): BelongsTo
     {
-        return $this->belongsTo(HotelSpace::class);
+        return $this->belongsTo(HotelSpace::class, 'hotel_space_id');
     }
 }
