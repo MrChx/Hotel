@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import Navbar from "../components/Navbar";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Hotel } from "../types/Data";
 import axios from "axios";
@@ -260,8 +260,8 @@ export default function Details() {
             </div>
             <hr className="border-[#F6F5FD]" />
             <div className="flex flex-col gap-[14px]">
-              <a
-                href="booking.html"
+            <Link to={`/hotel/${hotel.slug}/book`}>
+              <div
                 className="flex items-center justify-center w-full rounded-full p-[16px_26px] gap-3 bg-[#0D903A] font-bold text-[#F7F7FD]"
               >
                 <img
@@ -270,7 +270,8 @@ export default function Details() {
                   alt="icon"
                 />
                 <span>Book This Office</span>
-              </a>
+              </div>
+              </Link>
               <button className="flex items-center justify-center w-full rounded-full border border-[#000929] p-[16px_26px] gap-3 bg-white font-semibold">
                 <img
                   src="/assets/images/icons/save-add.svg"
