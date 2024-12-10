@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { z } from "zod";
 import { viewBookingSchema } from "../types/ValidationBooking";
-import axios from "axios";
 import { BookingDetails } from "../types/Data";
 import Navbar from "../components/Navbar";
+import apiClient, { isAxiosError } from "../service/ApiService";
 
 export default function CheckBooking() {
   const [formData, setFormData] = useState({
@@ -44,21 +44,16 @@ export default function CheckBooking() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/check-booking",
+      const response = await apiClient.post(
+        "/check-booking",
         {
           ...formData,
-        },
-        {
-          headers: {
-            "X-API-KEY": "LaRaVeL11ReAcT19Ts",
-          },
         }
       );
       console.log("we are checking your booking", response.data.data);
       setBookingDetails(response.data.data);
     } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
+      if (isAxiosError(error)) {
         console.error("Error submitting form", error.message);
         setError(error.message);
       } else {

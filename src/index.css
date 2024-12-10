@@ -1387,3 +1387,174 @@ body{
 .\[\&\:\:-webkit-calendar-picker-indicator\]\:opacity-0::-webkit-calendar-picker-indicator {
   opacity: 0;
 }
+
+@media (min-width: 575px) {
+
+  /**
+   * REUSED STYLE, FOOTER
+   */
+
+  .grid-list,
+  .footer-top { grid-template-columns: 1fr 1fr; }
+
+}
+
+
+
+
+
+/**
+ * responsive for larger than 768px screen
+ */
+
+@media (min-width: 768px) {
+
+  /**
+   * CUSTOM PROPERTY
+   */
+
+  :root {
+
+    /**
+     * typography
+     */
+
+    --fs-1: 6.4rem;
+
+  }
+
+
+
+  /**
+   * HEADER
+   */
+
+  .header .btn > span { display: block; }
+
+  .header .btn { --padding: 12px 30px; }
+
+
+
+  /**
+   * HERO
+   */
+
+  .hero {
+    min-height: 700px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .hero-title { max-width: 650px; }
+
+}
+
+
+
+
+
+/**
+ * responsive for larger than 992px screen
+ */
+
+@media (min-width: 992px) {
+
+  /**
+   * REUSED STYLE
+   */
+
+  .grid-list { grid-template-columns: repeat(3, 1fr); }
+
+
+
+  /**
+   * INSTRUCTION
+   */
+
+  .instruction .grid-list { grid-template-columns: repeat(4, 1fr); }
+
+
+
+  /**
+   * FOOTER
+   */
+
+  .footer-top { grid-template-columns: 1fr 0.6fr 0.6fr 1fr; }
+
+  .footer-brand { padding-inline-end: 60px; }
+
+}
+
+
+
+
+
+/**
+ * responsive for larger than 1200px screen
+ */
+
+@media (min-width: 1200px) {
+
+  /**
+   * REUSED STYLE
+   */
+
+  .container {
+    max-width: 1180px;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .grid-list { grid-template-columns: repeat(4, 1fr); }
+
+
+
+  /**
+   * HEADER
+   */
+
+  .overlay,
+  .navbar-top,
+  .menu-open-btn { display: none; }
+
+  .navbar,
+  .navbar.active {
+    all: unset;
+    margin-inline: auto;
+  }
+
+  .navbar-list {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .navbar-link { --fs-3: 1.6rem; }
+
+
+
+  /**
+   * HERO
+   */
+
+  .hero { min-height: 770px; }
+
+
+
+  /**
+   * TOP SELLER
+   */
+
+  .top-seller .grid-list { grid-template-columns: repeat(3, 1fr); }
+
+
+
+  /**
+   * INSTRUCTION
+   */
+
+  .instruction { padding-block-end: 120px; }
+
+}

@@ -1,8 +1,8 @@
 import HotelCard from "../components/HotelCard";
 import { useEffect, useState } from "react";
 import { Hotel } from "../types/Data";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import apiClient from "../service/ApiService";
 
 export default function BrowseHotelWrapper() {
   const [hotels, setHotel] = useState<Hotel[]>([]);
@@ -10,12 +10,8 @@ export default function BrowseHotelWrapper() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/api/hotels", {
-        headers: {
-          "X-API-KEY": "LaRaVeL11ReAcT19Ts",
-        },
-      })
+    apiClient
+      .get("/hotels")
       .then((response) => {
         setHotel(response.data.data);
         setLoading(false);

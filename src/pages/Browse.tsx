@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import BrowseCityWrapper from "../wrappers/BrowseCityWrapper";
 import BrowseHotelWrapper from "../wrappers/BrowseHotelWrapper";
 
+
 export default function Browse() {
   return (
     <>

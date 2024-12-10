@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Hotel } from "../types/Data";
-import axios from "axios";
 import { z } from "zod";
 import { bookingSchema } from "../types/ValidationBooking";
+import apiClient, { isAxiosError } from "../service/ApiService";
 
 export default function BookHotel() {
   const { slug } = useParams<{ slug: string }>();
@@ -29,12 +29,8 @@ export default function BookHotel() {
 
   useEffect(() => {
     console.log("Fetching hotel data...");
-    axios
-      .get(`http://127.0.0.1:8000/api/hotel/${slug}`, {
-        headers: {
-          "X-API-KEY": "LaRaVeL11ReAcT19Ts",
-        },
-      })
+    apiClient
+      .get(`/hotel/${slug}`)
       .then((response) => {
         console.log("Hotel data fetched successfully", response.data.data);
         setHotel(response.data.data);
@@ -55,7 +51,7 @@ export default function BookHotel() {
         setLoading(false);
       })
       .catch((error: unknown) => {
-        if (axios.isAxiosError(error)) {
+        if (isAxiosError(error)) {
           console.error("Error fetching hotel data:", error.message);
           setError(error.message);
         } else {
@@ -104,15 +100,10 @@ export default function BookHotel() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/booking-transaction",
+      const response = await apiClient.post(
+        "/booking-transaction",
         {
           ...formData,
-        },
-        {
-          headers: {
-            "X-API-KEY": "LaRaVeL11ReAcT19Ts",
-          },
         }
       );
       console.log("Booking transaction submitted successfully", response.data);
@@ -123,7 +114,7 @@ export default function BookHotel() {
         }
       });
     } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
+      if (isAxiosError(error)) {
         console.error("Error submitting booking:", error.message);
         setError(error.message);
       } else {
